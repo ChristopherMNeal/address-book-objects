@@ -1,8 +1,8 @@
-# _ _
+# _Address Book Objects_
 
-#### By _**Christopher Neal &**_
+#### By _**Christopher Neal, Ella Tanttu, & Liam Eller**_
 
-#### _ _
+#### _Objects Practice with Address Book_
 
 ## Technologies Used
 
@@ -14,7 +14,7 @@
 
 ## Description
 
-_This page practices_
+_This page practices objects_
 
 ## Setup/Installation Requirements
 
@@ -29,4 +29,4 @@ _None_
 
 _[MIT](https://opensource.org/licenses/MIT)_
 
-Copyright (c) _21 October 2021_ _Christopher Neal &_
+Copyright (c) _2 November 2021_ _Christopher Neal, Ella Tanttu, & Liam Eller_
