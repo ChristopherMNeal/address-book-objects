@@ -56,11 +56,11 @@ function Contact(firstName, lastName, phoneNumber, emailAddress) {
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
   this.emailAddress = emailAddress;
-  this.streetAddress = {};
 }
 
 Contact.prototype.addStreetAddress = function(streetAddress) {
-  this.streetAddress = StreetAddress();
+  // this.Contact = StreetAddress();
+  this.address = streetAddress;
 }
 
 // AddressBook.prototype.addContact = function(contact) {
@@ -71,9 +71,9 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 };
 
-Contact.prototype.fullStreetAddress = function() {
-  return this.streetNumber + "</br>" + this.city + ", " + this.state + " " + this.zip;
-};
+// StreetAddress.prototype.fullStreetAddress = function() {
+//   return this.streetNumber + "</br>" + this.city + ", " + this.state + " " + this.zip;
+// };
 
 // User Interface Logic ---------
 let addressBook = new AddressBook();
@@ -88,14 +88,29 @@ function displayContactDetails(addressBookToDisplay) {
   contactsList.html(htmlForContactInfo);
 }
 
+StreetAddress.prototype.fullStreetAddress = function() {
+  return this.streetNumber + "</br>" + this.city + ", " + this.state + " " + this.zip;
+};
+
+function showFullStreetAddress(contact) {
+  let htmlForAddressInfo = "";
+  Object.keys(contact.streetAddress).forEach(function(key) {
+    const address = contact.StreetAddress(key);
+    htmlForAddressInfo.fullStreetAddress();
+  });
+}
+//  Object.keys(streetAddress.details).forEach(function(key)
+
 function showContact(contactId) {
   const contact = addressBook.findContact(contactId);
+  console.log("contact = " + contact);
+  const fullAddressToShow = contactId.streetAddress.showFullStreetAddress();
   $("#show-contact").show();
   $(".first-name").html(contact.firstName);
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
   $(".email-address").html(contact.emailAddress);
-  $(".street-address").html(contact.streetAddress.fullStreetAddress());
+  $(".street-address").html(fullAddressToShow);
   let buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
@@ -132,14 +147,13 @@ $(document).ready(function() {
     $("input#new-city").val("");
     $("input#new-state").val("");
     $("input#new-zip").val("");
+    let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress);
+    console.log("newContact = " + newContact);
     const newStreetAddress = new StreetAddress(inputtedStreetNumber, inputtedCity, inputtedState, inputtedZip);
     console.log("newStreetAddress = " + newStreetAddress);
-    const newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress);
-    console.log("newContact = " + newContact);
     newContact.addStreetAddress(newStreetAddress);
-    console.log("newContact after add stree address function is ran = " + newContact);
+    console.log("newContact after add street address function is ran = " + newContact);
     addressBook.addContact(newContact);
-    // Contact.addStreetAddress(newStreetAddress);
     displayContactDetails(addressBook);
   });
 });
